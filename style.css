@@ -1,7 +1,8 @@
 :root {
   --color-primary: #2193b0;
   --color-secondary: #6dd5ed;
-  --calc-color: rgba(255, 255, 255, 0.5);
+  --btn-color-primary: rgba(255, 255, 255, 0.5);
+  --btn-color-secondary: rgb(0, 0, 0, 0.5);
 }
 
 *,
@@ -40,7 +41,7 @@ body {
   font-size: 2rem;
   border: 1px solid white;
   outline: none;
-  background-color: var(--calc-color);
+  background-color: var(--btn-color-primary);
 }
 
 .calculator-grid > button:hover {
@@ -49,10 +50,6 @@ body {
 
 .col-span-two {
   grid-column: span 2;
-}
-
-.row-span-two {
-  grid-row: span 2;
 }
 
 .output {
