@@ -27,9 +27,12 @@ class Calculator {
     if (this.outputPrevious !== '') {
       this.compute();
     }
-    this.operation = operation;
-    this.outputPrevious = this.outputCurrent;
-    this.outputCurrent = '';
+
+    if (this.operation !== '(-)') {
+      this.operation = operation;
+      this.outputPrevious = this.outputCurrent;
+      this.outputCurrent = '';
+    }
   }
 
   compute() {
@@ -60,6 +63,13 @@ class Calculator {
     this.outputPrevious = '';
   }
 
+  negative() {
+    if (!this.outputCurrent) return;
+
+    const cur = parseFloat(this.outputCurrent);
+    this.outputCurrent = -this.outputCurrent;
+  }
+
   updateDisplay() {
     this.outputCurrentEl.innerText = this.outputCurrent;
     this.outputPreviousEl.innerText = this.outputPrevious;
@@ -72,6 +82,7 @@ const operationButtons = document.querySelectorAll('[data-operation]');
 const clearButton = document.querySelector('[data-clear]');
 const delButton = document.querySelector('[data-delete]');
 const eqButton = document.querySelector('[data-equals]');
+const negButton = document.querySelector('[data-negative]');
 
 const outputPreviousEl = document.querySelector('[data-prev]');
 const outputCurrentEl = document.querySelector('[data-cur]');
@@ -104,5 +115,10 @@ eqButton.addEventListener('click', () => {
 
 delButton.addEventListener('click', () => {
   calculator.del();
+  calculator.updateDisplay();
+});
+
+negButton.addEventListener('click', () => {
+  calculator.negative();
   calculator.updateDisplay();
 });
